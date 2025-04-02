@@ -1006,5 +1006,533 @@
       animation: glitch-anim-2 3s infinite linear alternate-reverse;
     }
 
-    @keyframes glitch-anim-1 {
-      0% { clip-path: inset(20%
+   0% { clip-path: inset(20% 0 40% 0); }
+      20% { clip-path: inset(30% 0 50% 0); }
+      40% { clip-path: inset(50% 0 30% 0); }
+      60% { clip-path: inset(10% 0 70% 0); }
+      80% { clip-path: inset(60% 0 10% 0); }
+      100% { clip-path: inset(40% 0 30% 0); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip-path: inset(0 40% 0 30%); }
+      20% { clip-path: inset(0 20% 0 50%); }
+      40% { clip-path: inset(0 50% 0 10%); }
+      60% { clip-path: inset(0 10% 0 60%); }
+      80% { clip-path: inset(0 70% 0 20%); }
+      100% { clip-path: inset(0 30% 0 40%); }
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .timeline:before {
+        left: 40px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 0;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-dot {
+        left: 32px;
+        right: auto;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 4rem 5%;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      .feature-card, .team-member {
+        margin-bottom: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text);
+      cursor: pointer;
+      z-index: 102;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: var(--darker-bg);
+      z-index: 101;
+      padding: 5rem 2rem;
+      transition: right 0.5s ease;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .mobile-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-links a:hover {
+      color: var(--accent);
+      padding-left: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Screen -->
+  <div id="intro-screen">
+    <div class="pixel-grid"></div>
+    <div id="pixel-character"></div>
+    <div id="intro-text">Click anywhere to enter HackWorld...</div>
+  </div>
+
+  <!-- Main Site -->
+  <div id="main-site">
+    <header>
+      <nav>
+        <a href="#" class="logo">Hack<span>World</span></a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#team">Team</a>
+          <a href="#events">Events</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+      </nav>
+    </header>
+
+    <div class="mobile-menu">
+      <div class="mobile-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="overlay"></div>
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Welcome to <span class="glitch-effect" data-text="HackWorld">HackWorld</span></h1>
+        <p>Join the elite community of ethical hackers, cybersecurity experts, and tech enthusiasts.</p>
+        <button class="cta-btn">Get Started</button>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="cyber-dots dots-1"></div>
+      <h2 class="section-title">Our Features</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Advanced Security</h3>
+          <p>Learn cutting-edge security techniques and protect systems against modern threats.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3 class="feature-title">Hands-on Labs</h3>
+          <p>Practice your skills in our realistic lab environments without legal consequences.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3 class="feature-title">Community</h3>
+          <p>Connect with like-minded individuals and grow your professional network.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="cyber-dots dots-2"></div>
+      <h2 class="section-title">About HackWorld</h2>
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-button terminal-close"></div>
+          <div class="terminal-button terminal-minimize"></div>
+          <div class="terminal-button terminal-maximize"></div>
+          <div class="terminal-title">hackworld@terminal:~$</div>
+        </div>
+        <p class="terminal-text typing-text">
+          > HackWorld was founded in 2023 with a mission to democratize cybersecurity knowledge.<br>
+          > Our platform provides ethical hacking courses, CTF competitions, and a vibrant community.<br>
+          > We believe security should be accessible to everyone who wants to learn.<br>
+          > Join us and become part of the next generation of ethical hackers!<br>
+          > <span class="terminal-cursor"></span>
+        </p>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/250" alt="Hacking Workshop">
+          <div class="gallery-overlay">
+            <div>
+              <h3 class="gallery-title">Hacking Workshop</h3>
+              <p class="gallery-desc">Learn from industry experts</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/250" alt="CTF Competition">
+          <div class="gallery-overlay">
+            <div>
+              <h3 class="gallery-title">CTF Competition</h3>
+              <p class="gallery-desc">Test your skills against others</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/250" alt="Community Meetup">
+          <div class="gallery-overlay">
+            <div>
+              <h3 class="gallery-title">Community Meetup</h3>
+              <p class="gallery-desc">Network with fellow hackers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="section">
+      <div class="hexagon-bg"></div>
+      <h2 class="section-title">Our Team</h2>
+      <div class="team">
+        <div class="team-member">
+          <img class="team-photo" src="/api/placeholder/300/200" alt="Alex Chen">
+          <div class="team-info">
+            <h3 class="team-name">Alex Chen</h3>
+            <p class="team-role">Founder & Security Expert</p>
+            <p>Former black hat with 15+ years of experience in cybersecurity.</p>
+            <div class="team-social">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <img class="team-photo" src="/api/placeholder/300/200" alt="Sarah Johnson">
+          <div class="team-info">
+            <h3 class="team-name">Sarah Johnson</h3>
+            <p class="team-role">Chief Technology Officer</p>
+            <p>Network security specialist and former NSA consultant.</p>
+            <div class="team-social">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <img class="team-photo" src="/api/placeholder/300/200" alt="Marcus Williams">
+          <div class="team-info">
+            <h3 class="team-name">Marcus Williams</h3>
+            <p class="team-role">Lead Instructor</p>
+            <p>Ethical hacker and penetration testing professional.</p>
+            <div class="team-social">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section">
+      <h2 class="section-title">Upcoming Events</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">May 15, 2025</p>
+            <h3 class="timeline-title">Web App Security Workshop</h3>
+            <p>Learn how to identify and exploit common web vulnerabilities.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">June 5-7, 2025</p>
+            <h3 class="timeline-title">Annual HackWorld CTF</h3>
+            <p>Our flagship Capture The Flag competition with prizes up to $10,000.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">July 20, 2025</p>
+            <h3 class="timeline-title">Network Security Deep Dive</h3>
+            <p>Advanced techniques for securing enterprise networks.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">August 12, 2025</p>
+            <h3 class="timeline-title">Cryptography Masterclass</h3>
+            <p>Understanding modern cryptographic algorithms and their implementations.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="form-section">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>HackWorld</h3>
+          <p>The premier platform for ethical hackers and cybersecurity enthusiasts to learn, practice, and connect.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#about">About Us</a>
+            <a href="#team">Our Team</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <div class="footer-links">
+            <a href="#">Blog</a>
+            <a href="#">Documentation</a>
+            <a href="#">Tools</a>
+            <a href="#">CTF Archive</a>
+            <a href="#">FAQ</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Info</h3>
+          <div class="footer-links">
+            <a href="mailto:info@hackworld.io">info@hackworld.io</a>
+            <a href="tel:+1234567890">+1 (234) 567-890</a>
+            <a href="#">123 Cyber Street, Tech City</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HackWorld. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="scroll-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- FontAwesome for icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  
+  <script>
+    // Intro Screen
+    document.getElementById('intro-screen').addEventListener('click', function() {
+      this.style.opacity = '0';
+      setTimeout(() => {
+        this.style.display = 'none';
+        document.getElementById('main-site').style.display = 'block';
+        setTimeout(() => {
+          document.querySelector('.hero-content').classList.add('loaded');
+        }, 300);
+      }, 500);
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.overlay');
+
+    menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+    });
+
+    overlay.addEventListener('click', function() {
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      menuToggle.textContent = '☰';
+    });
+
+    // Mobile menu links
+    document.querySelectorAll('.mobile-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Scroll to Top Button
+    const scrollBtn = document.querySelector('.scroll-to-top');
+    
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Scroll Animation
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-title, .feature-card, .gallery-item, .team-member, .timeline-item').forEach(element => {
+      observer.observe(element);
+    });
+
+    // Contact Form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Form validation and submission would go here
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+
+    // Terminal text typing effect
+    const terminalText = document.querySelector('.typing-text');
+    terminalText.style.width = '0';
+    
+    // Start the animation when the terminal is visible
+    const terminalObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            terminalText.style.width = '100%';
+          }, 500);
+        }
+      });
+    }, observerOptions);
+    
+    terminalObserver.observe(document.querySelector('.terminal-window'));
+  </script>
+</body>
+</html>
